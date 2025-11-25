@@ -29,10 +29,10 @@ export function ConnectWalletModal({
     const handleConnect = async () => {
         setIsConnecting(true);
         try {
-            const injectedConnector = connectors.find(
-                (c) => c.id === 'injected',
+            const injectedConnector = connectors.find((c) => c.id === 'injected',
             );
-            if (!injectedConnector) {
+            if (!injectedConnector || !(window as any).ethereum) {
+                alert("MetaMask is not installed. You will be redirected to the MetaMask download page.");
                 window.open('https://metamask.io/download/', '_blank');
                 setIsConnecting(false);
                 return;
