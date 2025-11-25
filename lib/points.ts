@@ -4,7 +4,7 @@ export function calculateTotalPoints(nodes: number, startedAt: string): number {
     const started = new Date(startedAt).getTime();
     const now = Date.now();
     const timeInMs = now - started;
-    const timeInDays = timeInMs / (1000 * 60 * 60);
+    const timeInDays = timeInMs / (1000 * 60 * 60 * 24);
 
     return nodes * POINTS_PER_NODE_PER_DAY * timeInDays;
 }
