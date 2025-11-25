@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+  engineType    = "binary"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Investor {
+  id             String   @id @default(cuid())
+  walletAddress  String   @unique
+  nodes          Int
+  startedAt      DateTime
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
