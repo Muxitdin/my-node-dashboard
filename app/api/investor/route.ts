@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
             },
             create: {
                 walletAddress: walletAddress.toLowerCase(),
-                nodes: Math.floor(Math.random() * 20) + 1, // случайное число от 1 до 20
+                nodes: Math.floor(Math.random() * 16) + 5, // случайное число от 5 до 20
                 startedAt: new Date(),
             },
         });

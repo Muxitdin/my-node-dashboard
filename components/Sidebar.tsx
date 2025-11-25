@@ -26,6 +26,7 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
     function handleLogout() {
         disconnect();
         onLogout?.();
+        window.location.reload();
     }
 
     return (
