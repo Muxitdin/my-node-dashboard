@@ -1,6 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
+import EmptyCollectionEllipse from "@/public/EmptyCollectionEllipse.png"
+import EmptyCollectionImage from "@/public/EmptyCollectionImage.png"
 
 export function EmptyState() {
     return (
@@ -13,15 +16,8 @@ export function EmptyState() {
             <div className="flex flex-col items-center justify-center py-20">
                 {/* Empty state illustration */}
                 <div className="relative mb-8">
-                    {/* Circles */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-48 h-48 border border-gray-200 rounded-full"></div>
-                        <div className="absolute w-32 h-32 border border-gray-200 rounded-full"></div>
-                    </div>
-                    {/* Blue sphere */}
-                    <div className="relative z-10 w-32 h-32 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center shadow-lg">
-                        <div className="w-24 h-24 bg-blue-500 bg-opacity-40 rounded-full backdrop-blur-sm"></div>
-                    </div>
+                    <Image src={EmptyCollectionEllipse} alt="Empty Collection Ellipse" className={"absolute left-0"} />
+                    <Image src={EmptyCollectionImage} alt="Empty Collection Image" className={"max-w-[208px] max-h-[208px]"}/>
                 </div>
 
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
