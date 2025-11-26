@@ -37,11 +37,11 @@ export default function Home() {
             />
 
             {/* Main Content */}
-            <main className="flex-1 ml-[232px]">
+            <main className="flex-1 pt-[56px] md:pt-0 ml-0 md:ml-[232px] ">
                 <div className="p-8">
                     {/* Header */}
-                    <div className="mb-8">
-                        <h1 className="text-3xl font-medium  text-gray-900 mb-1">
+                    <div className="mb-6 lg:mb-8">
+                        <h1 className="text-2xl sm:text-3xl font-medium text-gray-900 mb-1">
                             Dashboard
                         </h1>
                         <p className="text-sm text-gray-500">
@@ -53,11 +53,11 @@ export default function Home() {
                     {authenticatedAddress ? (
                         <Dashboard walletAddress={authenticatedAddress} />
                     ) : (
-                        <div className="bg-white rounded-2xl p-12 card-shadow text-center">
+                        <div className="bg-white rounded-2xl p-6 sm:p-8 lg:p-12 card-shadow text-center">
                             <div className="max-w-md mx-auto">
-                                <div className="w-20 h-20 bg-gray-100 rounded-full mx-auto mb-6 flex items-center justify-center">
+                                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-100 rounded-full mx-auto mb-6 flex items-center justify-center">
                                     <svg
-                                        className="w-10 h-10 text-gray-400"
+                                        className="w-8 h-8 sm:w-10 sm:h-10 text-gray-400"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24"
@@ -70,16 +70,16 @@ export default function Home() {
                                         />
                                     </svg>
                                 </div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-3">
+                                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">
                                     Connect Your Wallet
                                 </h2>
-                                <p className="text-gray-500 mb-8">
+                                <p className="text-gray-500 mb-6 sm:mb-8 text-sm sm:text-base">
                                     Please connect your MetaMask wallet to view
                                     your dashboard and manage your nodes.
                                 </p>
                                 <button
                                     onClick={() => setIsModalOpen(true)}
-                                    className="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 rounded-xl font-semibold transition-colors"
+                                    className="bg-gray-900 hover:bg-gray-800 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl font-semibold transition-colors text-sm sm:text-base"
                                 >
                                     Connect Wallet
                                 </button>

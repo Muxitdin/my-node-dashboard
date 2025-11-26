@@ -18,6 +18,7 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
     const { disconnect } = useDisconnect();
 
     const [mounted, setMounted] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
         setMounted(true);
@@ -26,13 +27,102 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
     function handleLogout() {
         disconnect();
         onLogout?.();
+        setIsOpen(false);
         window.location.reload();
     }
 
     return (
-        <aside className="w-[232px] bg-white h-screen fixed left-0 top-0 sidebar-shadow flex flex-col">
-            {/* Logo */}
-            <div className="px-6 py-8">
+        <>
+        {/* Top bar for small screens */}
+        <header className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between bg-white/90 backdrop-blur border-b border-gray-100 px-4 py-3 md:hidden">
+            <div className="flex items-center gap-2">
+                {/* Small logo version or same SVG but smaller */}
+                <svg
+                    width="96"
+                    height="32"
+                    viewBox="0 0 143 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M5.79688 12.1152V20.1274H14.3054V18.024H31.0125V12.1152H5.79688ZM14.3054 29.978V27.6653H5.79688V35.8848H31.2861V29.9789H14.3054V29.978Z"
+                        fill="#121212"
+                    />
+                    <path
+                        d="M30.5 35.8858V12.1172H37.8759L49.5409 22.0321C49.6782 22.1473 49.8717 22.3201 50.1244 22.5505C50.376 22.7809 50.6392 23.0228 50.9137 23.2762C51.1883 23.5297 51.44 23.7601 51.6688 23.9674H52.012V12.1172H59.9713V35.8858H52.664L41.5825 26.5229C41.102 26.1313 40.5929 25.6935 40.0562 25.2097C39.5185 24.7258 39.0895 24.3351 38.7692 24.0346H38.4603V35.8849H30.501L30.5 35.8858Z"
+                        fill="#121212"
+                    />
+                    <path
+                        d="M68.0098 35.8848V18.6452H57.9922V12.1152H86.5026V18.6452H76.4849V35.8848H68.0108H68.0098Z"
+                        fill="#121212"
+                    />
+                    <path
+                        d="M85.2109 35.8839V12.1152H105.659C107.42 12.1152 108.89 12.4839 110.067 13.2212C111.245 13.9584 112.131 14.9261 112.726 16.1232C113.321 17.3213 113.618 18.6106 113.618 19.993C113.618 21.5818 113.269 22.993 112.572 24.2247C111.874 25.4573 110.85 26.4413 109.501 27.1786L114.167 35.8848H104.595L101.027 28.4573H93.6851V35.8848H85.2109V35.8839ZM93.6851 22.5485H102.674C103.314 22.5485 103.851 22.3469 104.286 21.9437C104.72 21.5415 104.938 20.9828 104.938 20.2685C104.938 19.7847 104.835 19.3767 104.629 19.0416C104.423 18.7085 104.155 18.4541 103.823 18.2813C103.491 18.1085 103.108 18.0221 102.673 18.0221H93.6842V22.5476L93.6851 22.5485Z"
+                        fill="#121212"
+                    />
+                    <path
+                        d="M119.034 35.8848V26.522L107.266 12.1152H117.18L123.322 20.1303H123.562L129.703 12.1152H139.241L127.508 26.522V35.8848H119.034Z"
+                        fill="#121212"
+                    />
+                    <path
+                        d="M20.6644 26.798H2.48438L5.79911 21.2012H23.9782L20.6644 26.798Z"
+                        fill="#121212"
+                    />
+                    <path
+                        d="M104.198 12.1152H108.429L108.845 13.6964L105.458 13.9671L102.805 12.9696L104.198 12.1152Z"
+                        fill="#121212"
+                    />
+                </svg>
+            </div>
+
+            {/* Hamburger */}
+            <button
+                onClick={() => setIsOpen((prev) => !prev)}
+                className="inline-flex items-center justify-center rounded-md p-2 border border-gray-200 hover:bg-gray-100 active:scale-95 transition"
+                aria-label="Toggle sidebar"
+            >
+                <span className="sr-only">Open sidebar</span>
+                <svg
+                    className="h-5 w-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                >
+                    {isOpen ? (
+                        <path d="M18 6L6 18M6 6l12 12" />
+                    ) : (
+                        <>
+                            <path d="M4 6h16" />
+                            <path d="M4 12h16" />
+                            <path d="M4 18h10" />
+                        </>
+                    )}
+                </svg>
+            </button>
+        </header>
+
+        {/* Backdrop for mobile when sidebar open */}
+        {isOpen && (
+            <div
+                className="fixed inset-0 z-40 bg-black/30 md:hidden"
+                onClick={() => setIsOpen(false)}
+            />
+        )}
+
+
+        {/* Sidebar */}
+            <aside className={`
+                    fixed left-0 top-0 z-50 h-screen bg-white sidebar-shadow flex flex-col
+                    w-[232px]
+                    transition-transform duration-200
+                    md:translate-x-0
+                    ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+                `}>
+            {/* Logo (desktop) */}
+            <div className="px-6 py-6 md:block">
                 <div className="flex items-center gap-2">
                     <svg
                         width="143"
@@ -74,7 +164,7 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
             </div>
 
             {/* MetaMask Connection */}
-            <div className="px-4 mb-6">
+            <div className="px-4 mb-4 mt-[0] md:mt-0">
                 {/* 🔐 ВАЖНО: на сервере всегда один и тот же блок */}
                 {!mounted && (
                     <div className="bg-[#EFF1F5] rounded-xl p-3 h-10" />
@@ -83,7 +173,7 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
                 {mounted &&
                     (isConnected && address ? (
                         <div className="bg-[#EFF1F5] rounded-xl p-3">
-                            <div className="flex items-center gap-2 mb-2">
+                            <div className="flex items-center gap-2 1.5">
                                 <svg
                                     width="32"
                                     height="32"
@@ -201,7 +291,10 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
                         </div>
                     ) : (
                         <button
-                            onClick={onConnectClick}
+                            onClick={() => {
+                                onConnectClick();
+                                setIsOpen(false);
+                            }}
                             className="w-full bg-[#EFF1F5] hover:bg-[#E5E7EB] rounded-xl p-3 transition-colors"
                         >
                             <div className="flex items-center gap-2">
@@ -324,14 +417,14 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
             </div>
 
             {/* Main Menu */}
-            <div className="flex-1 px-4">
+            <div className="flex-1 px-4 overflow-y-auto">
                 <div
-                    className={`{${lexend.className} text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-3 px-3`}
+                    className={`{${lexend.className} text-[10px] font-semibold text-gray-400 uppercase tracking-[0.16em] mb-2 px-3`}
                 >
                     Main Menu
                 </div>
-                <nav>
-                    <button className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-900 bg-[#EFF1F5] rounded-lg">
+                <nav className="space-y-1">
+                    <button onClick={() => setIsOpen(false)} className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-900 bg-[#EFF1F5] rounded-lg">
                         <svg
                             width="18"
                             height="18"
@@ -379,7 +472,7 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
 
             {/* Log out */}
             {mounted && isConnected && (
-                <div className="px-4 pb-8">
+                <div className="px-4 pb-8 pt-2 border-t border-gray-100">
                     <button
                         onClick={() => handleLogout()}
                         className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
@@ -398,6 +491,6 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
                     </button>
                 </div>
             )}
-        </aside>
+        </aside></>
     );
 }

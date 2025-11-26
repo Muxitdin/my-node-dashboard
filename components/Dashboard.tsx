@@ -21,13 +21,19 @@ export function Dashboard({ walletAddress }: DashboardProps) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [currentPoints, setCurrentPoints] = useState(0);
-    console.log("1111111111", walletAddress);
+
     useEffect(() => {
+        if(!walletAddress) return;
         fetchInvestorData();
     }, [walletAddress]);
 
     useEffect(() => {
         if (!investorData) return;
+
+        // initial points calculation
+        setCurrentPoints(
+            calculateTotalPoints(investorData.nodes, investorData.startedAt),
+        );
 
         // Update points every second
         const interval = setInterval(() => {
@@ -56,7 +62,6 @@ export function Dashboard({ walletAddress }: DashboardProps) {
 
             const data = await response.json();
             setInvestorData(data);
-            setCurrentPoints(calculateTotalPoints(data.nodes, data.startedAt));
         } catch (err) {
             setError(err instanceof Error ? err.message : 'Unknown error');
         } finally {
@@ -66,8 +71,8 @@ export function Dashboard({ walletAddress }: DashboardProps) {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center min-h-[400px]">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+            <div className="flex items-center justify-center min-h-[300px] sm:min-h-[400px]">
+                <div className="animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-b-2 border-gray-900"></div>
             </div>
         );
     }
@@ -75,7 +80,13 @@ export function Dashboard({ walletAddress }: DashboardProps) {
     if (error) {
         return (
             <div className="bg-red-50 border border-red-200 rounded-lg p-8 text-center">
-                <p className="text-red-600">Error: {error}</p>
+                <p className="text-red-600 mb-2">Error: {error}</p>
+                <button
+                    onClick={fetchInvestorData}
+                    className=" inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold bg-red-600 text-white hover:bg-red-700 cursor-pointer transition"
+                >
+                    Try again
+                </button>
             </div>
         );
     }
@@ -85,10 +96,9 @@ export function Dashboard({ walletAddress }: DashboardProps) {
     }
 
     const pointsPerDay = calculatePointsPerDay(investorData.nodes);
-    console.log("investorData: ",investorData)
 
     return (
-        <div className="animate-fadeIn">
+        <div className=" space-y-6 sm:space-y-8 animate-fadeIn">
             <StatsCards
                 totalNodes={investorData.nodes}
                 totalPoints={currentPoints}
