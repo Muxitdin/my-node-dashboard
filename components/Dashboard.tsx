@@ -4,7 +4,11 @@ import { useEffect, useState } from 'react';
 import { StatsCards } from './StatsCards';
 import { NodesGrid } from './NodesGrid';
 import { EmptyState } from './EmptyState';
-import { calculateTotalPoints, calculatePointsPerDay } from '@/lib/points';
+import {
+    calculateTotalPoints,
+    calculatePointsPerDay,
+    POINTS_PER_NODE_PER_DAY,
+} from '@/lib/points';
 
 interface DashboardProps {
     walletAddress: string;
@@ -23,29 +27,32 @@ export function Dashboard({ walletAddress }: DashboardProps) {
     const [currentPoints, setCurrentPoints] = useState(0);
 
     useEffect(() => {
-        if(!walletAddress) return;
+        if (!walletAddress) return;
         fetchInvestorData();
     }, [walletAddress]);
 
     useEffect(() => {
         if (!investorData) return;
 
+        const started = new Date(investorData.startedAt).getTime();
+        let frameId: number;
+
         // initial points calculation
         setCurrentPoints(
             calculateTotalPoints(investorData.nodes, investorData.startedAt),
         );
 
-        // Update points every second
-        const interval = setInterval(() => {
+        const tick = () => {
+            const now = Date.now();
+            const timeInDays = (now - started) / (1000 * 60 * 60 * 24);
             setCurrentPoints(
-                calculateTotalPoints(
-                    investorData.nodes,
-                    investorData.startedAt,
-                ),
+                investorData.nodes * POINTS_PER_NODE_PER_DAY * timeInDays,
             );
-        }, 1000);
+            frameId = requestAnimationFrame(tick);
+        }
+        tick()
 
-        return () => clearInterval(interval);
+        return () => cancelAnimationFrame(frameId);
     }, [investorData]);
 
     const fetchInvestorData = async () => {
