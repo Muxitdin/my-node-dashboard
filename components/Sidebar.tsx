@@ -115,14 +115,14 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
 
         {/* Sidebar */}
             <aside className={`
-                    fixed left-0 top-0 z-50 h-screen bg-white sidebar-shadow flex flex-col
+                    fixed left-0 top-0 z-50 h-screen bg-white flex flex-col
                     w-[232px]
                     transition-transform duration-200
                     md:translate-x-0
                     ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
                 `}>
             {/* Logo (desktop) */}
-            <div className="px-6 py-6 md:block">
+            <div className="ml-4 mt-6 px-2 pb-6 md:block">
                 <div className="flex items-center gap-2">
                     <svg
                         width="143"
@@ -164,15 +164,15 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
             </div>
 
             {/* MetaMask Connection */}
-            <div className="px-4 mb-4 mt-[0] md:mt-0">
+            <div className="px-0 ml-4 mb-4 mt-0">
                 {/* 🔐 ВАЖНО: на сервере всегда один и тот же блок */}
                 {!mounted && (
-                    <div className="bg-[#EFF1F5] rounded-xl p-3 h-10" />
+                    <div className="bg-[#ECF1F7] rounded-xl p-3 h-10" />
                 )}
 
                 {mounted &&
                     (isConnected && address ? (
-                        <div className="bg-[#EFF1F5] rounded-xl p-3">
+                        <div className="bg-[#ECF1F7] rounded-md p-3">
                             <div className="flex items-center gap-2 1.5">
                                 <svg
                                     width="32"
@@ -279,12 +279,12 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
                                     />
                                 </svg>
                                 <div className="flex-1 min-w-0">
-                                    <div className="text-xs font-semibold text-gray-900">
+                                    <div className="text-sm font-lexend font-normal leading-[140%] text-[#121212]">
                                         MetaMask
                                     </div>
-                                    <div className="text-[10px] text-gray-500 truncate font-mono">
-                                        {address.slice(0, 6)}...
-                                        {address.slice(-4)}
+                                    <div className="text-xs font-lexend leading-[140%] font-light text-gray-500 truncate">
+                                        {address.slice(0, 10)}…
+                                        {/*{address.slice(-4)}*/}
                                     </div>
                                 </div>
                             </div>
@@ -295,7 +295,7 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
                                 onConnectClick();
                                 setIsOpen(false);
                             }}
-                            className="w-full bg-[#EFF1F5] hover:bg-[#E5E7EB] rounded-xl p-3 transition-colors"
+                            className="w-full bg-[#ECF1F7] hover:bg-[#E5E7EB] cursor-pointer rounded-md p-3 transition-colors"
                         >
                             <div className="flex items-center gap-2">
                                 <svg
@@ -404,10 +404,10 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
                                 </svg>
 
                                 <div className="text-left flex-1">
-                                    <div className="text-xs font-semibold text-gray-900">
+                                    <div className="text-sm font-lexend font-normal leading-[140%] text-[#121212]">
                                         MetaMask
                                     </div>
-                                    <div className="text-[10px] text-gray-500">
+                                    <div className="text-xs font-lexend leading-[140%] font-light text-gray-500">
                                         Not connected
                                     </div>
                                 </div>
@@ -417,17 +417,17 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
             </div>
 
             {/* Main Menu */}
-            <div className="flex-1 px-4 overflow-y-auto">
+            <div className="flex-1 px-0 ml-4 pl-0 overflow-y-auto">
                 <div
-                    className={`{${lexend.className} text-[10px] font-semibold text-gray-400 uppercase tracking-[0.16em] mb-2 px-3`}
+                    className={`text-sm font-light font-lexend text-gray-400 leading-[140%] tracking-[0] mb-2`}
                 >
                     Main Menu
                 </div>
                 <nav className="space-y-1">
-                    <button onClick={() => setIsOpen(false)} className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-900 bg-[#EFF1F5] rounded-lg">
+                    <button onClick={() => setIsOpen(false)} className="font-lexend font-normal text-sm leading-[140%] w-full flex items-center gap-2 p-3 text-[#121212] bg-[#F1F1F1] rounded-md">
                         <svg
-                            width="18"
-                            height="18"
+                            width="20"
+                            height="20"
                             viewBox="0 0 18 18"
                             fill="none"
                             className="text-gray-900"
@@ -472,20 +472,18 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
 
             {/* Log out */}
             {mounted && isConnected && (
-                <div className="px-4 pb-8 pt-2 border-t border-gray-100">
+                <div className="px-4 pb-8 pt-2 border-t border-white">
                     <button
                         onClick={() => handleLogout()}
-                        className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+                        className="w-full flex items-center gap-2 px-3 py-2.5 text-sm font-medium font-lexend text-gray-500 cursor-pointer  hover:bg-gray-50 rounded-lg transition-colors"
                     >
-                        <svg
-                            width="18"
-                            height="18"
-                            viewBox="0 0 18 18"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                        >
-                            <path d="M6 16H3a1 1 0 01-1-1V3a1 1 0 011-1h3M12 12l4-4-4-4M16 8H6" />
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="" xmlns="http://www.w3.org/2000/svg">
+                            <mask id="mask0_374_8030" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+                                <rect width="20" height="20" fill="#D9D9D9"/>
+                            </mask>
+                            <g mask="url(#mask0_374_8030)">
+                                <path d="M4.42345 17.0833C4.00248 17.0833 3.64616 16.9375 3.35449 16.6458C3.06283 16.3542 2.91699 15.9978 2.91699 15.5769V13.2371C2.91699 13.0599 2.97685 12.9114 3.09658 12.7917C3.21616 12.6721 3.36463 12.6123 3.54199 12.6123C3.71935 12.6123 3.86783 12.6721 3.98741 12.7917C4.10713 12.9114 4.16699 13.0599 4.16699 13.2371V15.5769C4.16699 15.641 4.19373 15.6998 4.2472 15.7531C4.30053 15.8066 4.35928 15.8333 4.42345 15.8333H15.5772C15.6414 15.8333 15.7001 15.8066 15.7535 15.7531C15.8069 15.6998 15.8337 15.641 15.8337 15.5769V4.42311C15.8337 4.35895 15.8069 4.3002 15.7535 4.24686C15.7001 4.19339 15.6414 4.16666 15.5772 4.16666H4.42345C4.35928 4.16666 4.30053 4.19339 4.2472 4.24686C4.19373 4.3002 4.16699 4.35895 4.16699 4.42311V6.76291C4.16699 6.94013 4.10713 7.0886 3.98741 7.20832C3.86783 7.32791 3.71935 7.3877 3.54199 7.3877C3.36463 7.3877 3.21616 7.32791 3.09658 7.20832C2.97685 7.0886 2.91699 6.94013 2.91699 6.76291V4.42311C2.91699 4.00214 3.06283 3.64582 3.35449 3.35416C3.64616 3.06249 4.00248 2.91666 4.42345 2.91666H15.5772C15.9982 2.91666 16.3545 3.06249 16.6462 3.35416C16.9378 3.64582 17.0837 4.00214 17.0837 4.42311V15.5769C17.0837 15.9978 16.9378 16.3542 16.6462 16.6458C16.3545 16.9375 15.9982 17.0833 15.5772 17.0833H4.42345ZM10.2055 10.625H3.54199C3.36463 10.625 3.21616 10.5651 3.09658 10.4454C2.97685 10.3258 2.91699 10.1774 2.91699 9.99999C2.91699 9.82263 2.97685 9.67416 3.09658 9.55457C3.21616 9.43485 3.36463 9.37499 3.54199 9.37499H10.2055L8.45553 7.62499C8.33151 7.5011 8.27033 7.3561 8.27199 7.18999C8.27366 7.02374 8.33484 6.87603 8.45553 6.74686C8.5847 6.61756 8.73317 6.55075 8.90095 6.54645C9.06873 6.54214 9.21727 6.60464 9.34658 6.73395L12.0853 9.4727C12.1632 9.55075 12.2182 9.63305 12.2503 9.71957C12.2824 9.8061 12.2985 9.89957 12.2985 9.99999C12.2985 10.1004 12.2824 10.1939 12.2503 10.2804C12.2182 10.3669 12.1632 10.4492 12.0853 10.5273L9.34658 13.266C9.22255 13.3899 9.07533 13.4511 8.90491 13.4496C8.73449 13.4479 8.5847 13.3824 8.45553 13.2531C8.33484 13.1239 8.27234 12.9776 8.26803 12.8142C8.26373 12.6507 8.32623 12.5043 8.45553 12.375L10.2055 10.625Z" fill="#4a5568"/>
+                            </g>
                         </svg>
                         Log out
                     </button>

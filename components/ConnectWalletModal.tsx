@@ -3,7 +3,7 @@
 import { useConnect, useSignMessage, useDisconnect } from 'wagmi';
 import { useState } from 'react';
 import Image from 'next/image';
-import NodeImageAuthPage from '@/public/NodeImageAuthPage.png';
+import NodeImageAuthPage from '@/public/NodeImageAuthPage.webp';
 
 interface ConnectWalletModalProps {
     isOpen: boolean;
@@ -47,7 +47,7 @@ export function ConnectWalletModal({
                         setConnectedAddress(address);
 
                         // Sign message for authentication
-                        await signMessage(
+                        signMessage(
                             {
                                 message: `Sign this message to verify you own this wallet: ${address}`,
                             },
@@ -61,6 +61,7 @@ export function ConnectWalletModal({
                                     disconnect();
                                     setConnectedAddress(null);
                                     setIsConnecting(false);
+                                    window.location.reload();
                                 },
                             },
                         );
@@ -68,6 +69,7 @@ export function ConnectWalletModal({
                     onError: (error) => {
                         console.error('Connection failed:', error);
                         setIsConnecting(false);
+                        window.location.reload();
                     },
                 },
             );
@@ -99,10 +101,10 @@ export function ConnectWalletModal({
 
                 {/* Content */}
                 <div className="p-6 pt-0">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                    <h2 className={"font-spaceGrotesk text-2xl font-normal text-2xl text-[#121212] mb-2"}>
                         Connect your wallet
                     </h2>
-                    <p className="text-gray-500 text-sm mb-6">
+                    <p className="font-lexend font-light text-[#121212] text-sm mb-6">
                         You currently don't have any nodes in your collection.
                     </p>
 
@@ -219,11 +221,11 @@ export function ConnectWalletModal({
                                     />
                                 </svg>
                             </div>
-                            <span className="font-semibold">
+                            <span className="font-spaceGrotesk font-medium leading-[120%]">
                                 {isConnecting ? 'Connecting...' : 'MetaMask'}
                             </span>
                         </div>
-                        <div className="bg-white text-gray-900 px-4 py-2 rounded-lg font-semibold text-sm flex items-center gap-2">
+                        <div className="font-lexend leading-[120%]  bg-white text-gray-900 px-4 py-3 rounded-lg font-light flex items-center gap-2">
                             Connect
                             <svg
                                 width="13"

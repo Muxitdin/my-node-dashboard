@@ -29,7 +29,7 @@ export default function Home() {
     };
 
     return (
-        <div className="flex min-h-screen bg-[#F5F6FA]">
+        <div className="flex min-h-screen bg-[#fff] p-6">
             {/* Sidebar */}
             <Sidebar
                 onConnectClick={() => setIsModalOpen(true)}
@@ -37,14 +37,14 @@ export default function Home() {
             />
 
             {/* Main Content */}
-            <main className="flex-1 pt-[56px] md:pt-0 ml-0 md:ml-[232px] ">
-                <div className="p-8">
+            <main className="flex-1 mt-[56px] md:mt-0 md:pt-0 ml-0 md:ml-[232px] bg-[#F8F8F8] rounded-3xl">
+                <div className="p-8 pt-6">
                     {/* Header */}
-                    <div className="mb-6 lg:mb-8">
-                        <h1 className="text-2xl sm:text-3xl font-medium text-gray-900 mb-1">
+                    <div className="mb-6 lg:mb-8 flex flex-col gap-0">
+                        <h1 className="font-spaceGrotesk text-2xl sm:text-3xl md:text-[49px] font-medium text-gray-900 mb-1 leading-[120%] tracking-[-2%]">
                             Dashboard
                         </h1>
-                        <p className="text-sm text-gray-500">
+                        <p className="font-lexend font-light text-[16px] leading-[140%]  text-gray-900">
                             Explore your data here.
                         </p>
                     </div>
@@ -53,7 +53,7 @@ export default function Home() {
                     {authenticatedAddress ? (
                         <Dashboard walletAddress={authenticatedAddress} />
                     ) : (
-                        <div className="bg-white rounded-2xl p-6 sm:p-8 lg:p-12 card-shadow text-center">
+                        <div className="font-spaceGrotesk bg-white rounded-2xl p-6 sm:p-8 lg:p-12 card-shadow text-center">
                             <div className="max-w-md mx-auto">
                                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-100 rounded-full mx-auto mb-6 flex items-center justify-center">
                                     <svg
@@ -79,7 +79,7 @@ export default function Home() {
                                 </p>
                                 <button
                                     onClick={() => setIsModalOpen(true)}
-                                    className="bg-gray-900 hover:bg-gray-800 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl font-semibold transition-colors text-sm sm:text-base"
+                                    className="bg-gray-900 cursor-pointer hover:bg-gray-800 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl font-semibold transition-colors text-sm sm:text-base"
                                 >
                                     Connect Wallet
                                 </button>

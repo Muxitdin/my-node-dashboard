@@ -2,29 +2,29 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import EmptyCollectionEllipse from "@/public/EmptyCollectionEllipse.png"
-import EmptyCollectionImage from "@/public/EmptyCollectionImage.png"
+import EmptyCollectionEllipse from "@/public/EmptyCollectionEllipse.webp"
+import EmptyCollectionImage from "@/public/EmptyCollectionImage.webp"
 
 export function EmptyState() {
     return (
-        <div className="bg-white rounded-2xl p-12 card-shadow">
-            <h2 className="text-xl font-bold text-gray-900 mb-2">
+        <div className="rounded-2xl ">
+            <h2 className="font-spaceGrotesk text-lg sm:text-xl text-gray-900">
                 All Nodes{' '}
-                <span className="text-gray-400 font-normal">(0 Items)</span>
+                <span className="font-lexend leading-[140%]  text-gray-400 font-light text-sm">(0 Items)</span>
             </h2>
 
-            <div className="flex flex-col items-center justify-center py-20">
+            <div className="flex flex-col items-center justify-start py-0">
                 {/* Empty state illustration */}
                 <div className="relative mb-8">
                     <Image src={EmptyCollectionEllipse} alt="Empty Collection Ellipse" className={"absolute left-0"} />
                     <Image src={EmptyCollectionImage} alt="Empty Collection Image" className={"max-w-[208px] max-h-[208px]"}/>
                 </div>
 
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="font-spaceGrotesk text-lg font-semibold text-gray-900 mb-2">
                     Your Node Collection is empty
                 </h3>
-                <p className="text-sm text-gray-500">
-                    You currently don't have any nodes in your collection.
+                <p className="font-spaceGrotesk text-sm text-gray-500">
+                    You currently don&#39;t have any nodes in your collection.
                 </p>
             </div>
         </div>

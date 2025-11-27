@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+.font-spaceGrotesk {
+    font-family: var(--font-space-grotesk), system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.font-lexend {
+    font-family: var(--font-lexend), system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
 @layer base {
     body {
         @apply bg-[#F5F6FA] text-gray-900;

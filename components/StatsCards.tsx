@@ -15,8 +15,8 @@ export function StatsCards({
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mb-6 lg:mb-8">
             {/* Total Nodes */}
             <div className="bg-white rounded-2xl p-5 sm:p-6 card-shadow">
-                <div className="flex items-center justify-between mb-3 sm:mb-4">
-                    <h3 className="text-xs sm:text-sm font-medium text-gray-600">
+                <div className="flex items-center justify-between mb-3 sm:mb-4 gap-[32px]">
+                    <h3 className="font-lexend leading-[140%] sm:text-sm text-gray-600">
                         Total Nodes
                     </h3>
                     <div className="w-8 h-8 bg-gray-50 rounded-lg flex items-center justify-center">
@@ -69,7 +69,7 @@ export function StatsCards({
                         </svg>
                     </div>
                 </div>
-                <div className="text-3xl sm:text-4xl font-bold text-gray-900">
+                <div className="font-spaceGrotesk leading-[120%] tracking-[-2%] text-3xl sm:text-4xl font-medium text-gray-900">
                     {totalNodes}
                 </div>
             </div>
@@ -77,7 +77,7 @@ export function StatsCards({
             {/* Total Points */}
             <div className="bg-white rounded-2xl p-5 sm:p-6 card-shadow">
                 <div className="flex items-center justify-between mb-3 sm:mb-4">
-                    <h3 className="text-xs sm:text-sm font-medium text-gray-600">
+                    <h3 className="font-lexend leading-[140%] sm:text-sm text-gray-600">
                         Total Points
                     </h3>
                     <div className="w-8 h-8 bg-gray-50 rounded-lg flex items-center justify-center">
@@ -131,18 +131,20 @@ export function StatsCards({
                         </svg>
                     </div>
                 </div>
-                <div className="text-3xl sm:text-4xl font-bold text-gray-900 tabular-nums">
-                    {totalPoints.toLocaleString('en-US', {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                    })}
+                <div className="font-spaceGrotesk leading-[120%] tracking-[-2%] text-3xl sm:text-4xl font-medium text-gray-900 tabular-nums">
+                    { totalPoints !== 0 ? (
+                        totalPoints.toLocaleString('en-US', {
+                            minimumFractionDigits: 3,
+                            maximumFractionDigits: 3,
+                        })
+                    ) : 0 }
                 </div>
             </div>
 
             {/* Points per Day */}
             <div className="bg-white rounded-2xl p-5 sm:p-6 card-shadow">
                 <div className="flex items-center justify-between mb-3 sm:mb-4">
-                    <h3 className="text-xs sm:text-sm font-medium text-gray-600">
+                    <h3 className="font-lexend leading-[140%] sm:text-sm text-gray-600">
                         Points per Day
                     </h3>
                     <div className="w-8 h-8 bg-gray-50 rounded-lg flex items-center justify-center">
@@ -196,7 +198,7 @@ export function StatsCards({
                         </svg>
                     </div>
                 </div>
-                <div className="text-3xl sm:text-4xl font-bold text-gray-900 tabular-nums">
+                <div className="font-spaceGrotesk leading-[120%] tracking-[-2%] text-3xl sm:text-4xl font-medium text-gray-900 tabular-nums">
                     {pointsPerDay}
                 </div>
             </div>
