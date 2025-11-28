@@ -164,7 +164,7 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
             </div>
 
             {/* MetaMask Connection */}
-            <div className="px-0 ml-4 mb-4 mt-0">
+            <div className="px-0 ml-4 mb-4 mr-4 md:mr-0 mt-0">
                 {/* 🔐 ВАЖНО: на сервере всегда один и тот же блок */}
                 {!mounted && (
                     <div className="bg-[#ECF1F7] rounded-xl p-3 h-10" />
@@ -417,7 +417,7 @@ export function Sidebar({ onConnectClick, onLogout }: SidebarProps) {
             </div>
 
             {/* Main Menu */}
-            <div className="flex-1 px-0 ml-4 pl-0 overflow-y-auto">
+            <div className="flex-1 px-0 ml-4 mr-4 md:mr-0 pl-0 overflow-y-auto">
                 <div
                     className={`text-sm font-light font-lexend text-gray-400 leading-[140%] tracking-[0] mb-2`}
                 >

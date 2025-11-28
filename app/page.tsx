@@ -37,7 +37,7 @@ export default function Home() {
             />
 
             {/* Main Content */}
-            <main className="flex-1 mt-[56px] md:mt-0 md:pt-0 ml-0 md:ml-[232px] bg-[#F8F8F8] rounded-3xl">
+            <main className="flex-1 mt-[56px] md:mt-0 md:pt-0 ml-0 md:ml-[220px] bg-[#F8F8F8] rounded-3xl">
                 <div className="p-8 pt-6">
                     {/* Header */}
                     <div className="mb-6 lg:mb-8 flex flex-col gap-0">
